@@ -10,4 +10,7 @@ public interface MatrixAndVector {
     //умножение на скаляр
     float[][] multiByScalar(float[][] matrix, float scalar);
 
+    //деление на скаляр
+    float[][] divByScalar(float[][] matrix, float scalar);
+
 }

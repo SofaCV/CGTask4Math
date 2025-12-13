@@ -1,8 +1,7 @@
 package Math;
 
+import Math.Matrix.Matrix4;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class Matrix4Test {
     @Test
