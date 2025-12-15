@@ -71,7 +71,7 @@ public class Matrix4 extends Matrix {
     //умножение на скаляр
     public static Matrix4 multiByScalar(Matrix4 matrix, float scalar) {
         checkArguments(matrix);
-        
+
         float[][] res = Matrix4.divByScalar(matrix.getMatrix(),scalar);
 
         return new Matrix4(
