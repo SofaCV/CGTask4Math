@@ -107,9 +107,9 @@ public class Matrix3 extends Matrix {
     //нулевая матрица
     public static Matrix3 zeroMatrix() {
         return new Matrix3(
-                1, 1, 1,
-                1, 1, 1,
-                1, 1, 1
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0
         );
     }
 

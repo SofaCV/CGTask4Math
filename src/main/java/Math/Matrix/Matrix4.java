@@ -72,7 +72,7 @@ public class Matrix4 extends Matrix {
     public static Matrix4 multiByScalar(Matrix4 matrix, float scalar) {
         checkArguments(matrix);
 
-        float[][] res = Matrix4.divByScalar(matrix.getMatrix(),scalar);
+        float[][] res = Matrix4.multiByScalar(matrix.getMatrix(),scalar);
 
         return new Matrix4(
                 res[0][0], res[0][1], res[0][2], res[0][3],
@@ -112,7 +112,7 @@ public class Matrix4 extends Matrix {
     }
 
     //единичная матрица
-    public static Matrix4 identityMatrix(int row, int col) {
+    public static Matrix4 identityMatrix() {
         return new Matrix4(
                 1, 1, 1, 1,
                 1, 1, 1, 1,
@@ -122,7 +122,7 @@ public class Matrix4 extends Matrix {
     }
 
     //нулевая матрица
-    public static Matrix4 zeroMatrix(int row, int col) {
+    public static Matrix4 zeroMatrix() {
         return new Matrix4(
                 0, 0, 0, 0,
                 0, 0, 0, 0,
