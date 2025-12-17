@@ -10,12 +10,12 @@ class Matrix3Test {
     @Test
     void getMatrix() {
         Matrix3 matrix = new Matrix3 (
-                6,6,6,
-                6,6,6,
-                6,6,6
+                1,2,3,
+                4,5,6,
+                7,8,9
         );
 
-        float[][] check = {{6,6,6}, {6,6,6}, {6,6,6}};
+        float[][] check = {{1,2,3}, {4,5,6}, {7,8,9}};
 
         assertEquals(matrix.getMatrix()[0][0], check[0][0], 10e-8);
         assertEquals(matrix.getMatrix()[0][1], check[0][1], 10e-8);

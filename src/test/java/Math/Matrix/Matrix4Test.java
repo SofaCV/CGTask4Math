@@ -9,25 +9,33 @@ class Matrix4Test {
     @Test
     void getMatrix() {
         Matrix4 matrix = new Matrix4 (
-                6,6,6, 6,
-                6,6,6, 6,
-                6,6,6, 6,
-                6, 6, 6, 6
+                1,2,3, 4,
+                5,6,7, 8,
+                9,10,11, 12,
+                13, 14, 15, 16
         );
 
-        float[][] check = {{6,6,6,6}, {6,6,6,6}, {6,6,6,6}, {6,6,6,6}};
+        float[][] check = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,16}};
 
-        assertEquals(matrix.getMatrix()[0][0], check[0][0], 10e-8);
-        assertEquals(matrix.getMatrix()[0][1], check[0][1], 10e-8);
-        assertEquals(matrix.getMatrix()[0][2], check[0][2], 10e-8);
+        assertEquals(matrix.getMatrix()[0][0], check[0][0], 0.0001);
+        assertEquals(matrix.getMatrix()[0][1], check[0][1], 0.0001);
+        assertEquals(matrix.getMatrix()[0][2], check[0][2], 0.0001);
+        assertEquals(matrix.getMatrix()[0][3], check[0][3], 0.0001);
 
         assertEquals(matrix.getMatrix()[1][0], check[1][0], 10e-8);
         assertEquals(matrix.getMatrix()[1][1], check[1][1], 10e-8);
         assertEquals(matrix.getMatrix()[1][2], check[1][2], 10e-8);
+        assertEquals(matrix.getMatrix()[1][3], check[1][3], 10e-8);
 
         assertEquals(matrix.getMatrix()[2][0], check[2][0], 10e-8);
         assertEquals(matrix.getMatrix()[2][1], check[2][1], 10e-8);
         assertEquals(matrix.getMatrix()[2][2], check[2][2], 10e-8);
+        assertEquals(matrix.getMatrix()[2][3], check[2][3], 10e-8);
+
+        assertEquals(matrix.getMatrix()[3][0], check[3][0], 10e-8);
+        assertEquals(matrix.getMatrix()[3][1], check[3][1], 10e-8);
+        assertEquals(matrix.getMatrix()[3][2], check[3][2], 10e-8);
+        assertEquals(matrix.getMatrix()[3][3], check[3][3], 10e-8);
     }
 
     @Test
