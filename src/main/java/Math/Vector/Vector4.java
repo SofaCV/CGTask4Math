@@ -1,87 +1,17 @@
 package Math.Vector;
 
-public class Vector4 {
-    private float x;
-    private float y;
-    private float z;
-    private float w;
+public class Vector4 extends Vector<Vector4>{
 
     public Vector4(float x, float y, float z, float w){
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
+        super(new float[]{x, y, z, w});
     }
 
-    public float[] getVector() {
-        return new float[]{x, y, z, w};
-    }
-
-    //сложение
-    public static Vector4 add(Vector4 firstVector, Vector4 secondVector){
-        checkArguments(firstVector);
-        checkArguments(secondVector);
-
-        float[] res = Vector.add(firstVector.getVector(), secondVector.getVector());
-        return new Vector4(res[0], res[1], res[2], res[3]);
-    }
-
-    //разность
-    public static Vector4 subtract(Vector4 firstVector, Vector4 secondVector){
-        checkArguments(firstVector);
-        checkArguments(secondVector);
-
-        float[] res = Vector.subtract(firstVector.getVector(), secondVector.getVector());
-        return new Vector4(res[0], res[1], res[2], res[3]);
-    }
-
-    //умножение на скаляр
-    public static Vector4 multiByScalar(Vector4 vector, float scalar) {
-        checkArguments(vector);
-
-        float[] res = Vector.multiByScalar(vector.getVector(), scalar);
-        return new Vector4(res[0], res[1], res[2], res[3]);
-    }
-
-    //деление на скаляр
-    public static Vector4 divByScalar(Vector4 vector, float scalar) {
-        checkArguments(vector);
-
-        if (scalar == 0) {
-            throw new ArithmeticException("Деление на ноль невозможно");
-        }
-
-        float[] res = Vector.divByScalar(vector.getVector(), scalar);
-        return new Vector4(res[0], res[1], res[2], res[3]);
-    }
-
-    //длина
-    public static float vectorLength(Vector4 vector) {
-        checkArguments(vector);
-
-        return Vector.vectorLength(vector.getVector());
-    }
-
-    //нормализация
-    public static Vector4 normalization(Vector4 vector) {
-        checkArguments(vector);
-
-        float[] res = Vector.normalization(vector.getVector());
-        return new Vector4(res[0], res[1], res[2], res[3]);
-    }
-
-    //скалярное произведение
-    public static float scalarMultiplication(Vector4 firstVector, Vector4 secondVector) {
-        checkArguments(firstVector);
-        checkArguments(secondVector);
-
-        return Vector.scalarMultiplication(firstVector.getVector(),secondVector.getVector());
-    }
-
-    //исключения на проверку входных данных
-    private static void checkArguments(Vector4 vector){
-        if (vector == null) {
-            throw new IllegalArgumentException("аргумент не может быть null");
-        }
+    /**
+     * @param result
+     * @return
+     */
+    @Override
+    public Vector4 createNewVector(float[] result) {
+        return new Vector4(result[0], result[1], result[2], result[3]);
     }
 }

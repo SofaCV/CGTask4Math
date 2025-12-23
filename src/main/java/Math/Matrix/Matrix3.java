@@ -1,9 +1,9 @@
 package Math.Matrix;
 
 public class Matrix3 {
-    private float value00, value01, value02;
-    private float value10, value11, value12;
-    private float value20, value21, value22;
+    private final float value00, value01, value02;
+    private final float value10, value11, value12;
+    private final float value20, value21, value22;
 
     public Matrix3(float value00, float value01, float value02,
                    float value10, float value11, float value12,

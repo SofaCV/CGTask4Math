@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Math/MatrixAndVector.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Math/Vector/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Math/Vector/Vector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Math/Vector/Vector2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Math/Vector/Vector2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Math/Vector/Vector3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Math/Vector/Vector3.java" afterDir="false" />
@@ -90,7 +89,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Math/Matrix/Matrix.java</url>
-          <line>70</line>
+          <line>94</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

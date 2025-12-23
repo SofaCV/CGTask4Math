@@ -1,55 +1,69 @@
 package Math.Vector;
 
-public class Vector {
+public abstract class Vector<T extends Vector<T>> {
+    private final float[] vector;
+
+    protected Vector(float[] vector){
+        this.vector = vector.clone();
+    }
+
+    public float[] getVector() {
+        return vector;
+    }
+
+    public abstract T createNewVector(float[] result);
 
     //сложение
-    public static float[] add(float[] firstObject, float[] secondObject) {
-        int row = firstObject.length;
+    public T add(T argument) {
+        checkArguments(argument);
+        int len = argument.getVector().length;
+        float[] resAdd = new float[len];
 
-        float[] add = new float[row];
-
-        for(int i = 0; i < row; i++){
-            add[i] = firstObject[i] + secondObject[i];
+        for(int i = 0; i < len; i++){
+            resAdd[i] = vector[i] + argument.getVector()[i];
         }
-        return add;
+        return createNewVector(resAdd);
     }
 
     //разность
-    public static float[] subtract(float[] firstObject, float[] secondObject) {
-        int row = firstObject.length;
-        float[] subtract = new float[row];
+    public T subtract(T argument) {
+        checkArguments(argument);
+        int len = argument.getVector().length;
+        float[] resSubtract = new float[len];
 
-        for(int i = 0; i < row; i++){
-            subtract[i] = firstObject[i] - secondObject[i];
+        for(int i = 0; i < len; i++){
+            resSubtract[i] = vector[i] - argument.getVector()[i];
         }
-        return subtract;
+        return createNewVector(resSubtract);
     }
 
     //умножение на скаляр
-    public static float[] multiByScalar(float[] object, float scalar) {
-        int row = object.length;
-        float[] multiByScalar = new float[row];
+    public T multiByScalar(float scalar) {
+        int len = vector.length;
+        float[] resMultiByScalar = new float[len];
 
-        for(int i = 0; i < row; i++){
-            multiByScalar[i] = object[i] * scalar;
+        for(int i = 0; i < len; i++){
+            resMultiByScalar[i] = vector[i] * scalar;
         }
-        return multiByScalar;
+        return createNewVector(resMultiByScalar);
     }
 
     //деление на скаляр
-    public static float[] divByScalar(float[] object, float scalar) {
-        int row = object.length;
-
-        float[] divByScalar = new float[row];
-
-        for(int i = 0; i < row; i++){
-            divByScalar[i] = object[i] / scalar;
+    public T divByScalar(float scalar) {
+        if (scalar == 0) {
+            throw new ArithmeticException("Деление на ноль невозможно");
         }
-        return divByScalar;
+        int len = vector.length;
+        float[] resDivByScalar = new float[len];
+
+        for(int i = 0; i < len; i++){
+            resDivByScalar[i] = vector[i] / scalar;
+        }
+        return createNewVector(resDivByScalar);
     }
 
     //длина
-    public static float vectorLength(float[] vector) {
+    public float vectorLength() {
         int len = vector.length;
         float sum = 0;
 
@@ -60,26 +74,32 @@ public class Vector {
     }
 
     //нормализация
-    public static float[] normalization(float[] vector) {
-        int len = vector.length;
-        float[] normalizationVector = new float[len];
-        float vectorLength = vectorLength(vector);
+    public T normalization() {
+        float length = vectorLength();
+        float[] normalized = new float[vector.length];
 
-        for (int i = 0; i < len; i++){
-            normalizationVector[i] = vector[i] / vectorLength;
-
+        for (int i = 0; i < vector.length; i++) {
+            normalized[i] = vector[i] / length;
         }
-        return normalizationVector;
+        return createNewVector(normalized);
     }
 
     //скалярное произведение
-    public static float scalarMultiplication(float[] firstVector, float[] secondVector) {
-        int len = firstVector.length;
+    public float scalarMultiplication(T argument) {
+        checkArguments(argument);
+        int len = argument.getVector().length;
         float scalarMultiplication = 0;
 
         for(int i = 0; i < len; i++){
-            scalarMultiplication += firstVector[i] * secondVector[i];
+            scalarMultiplication += vector[i] * argument.getVector()[i];
         }
         return scalarMultiplication;
+    }
+
+    //исключения на проверку входных данных
+    private void checkArguments(T argument){
+        if (argument == null) {
+            throw new IllegalArgumentException("аргумент не может быть null");
+        }
     }
 }

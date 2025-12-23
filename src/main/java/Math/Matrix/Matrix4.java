@@ -1,10 +1,10 @@
 package Math.Matrix;
 
 public class Matrix4 {
-    private float value00, value01, value02, value03;
-    private float value10, value11, value12, value13;
-    private float value20, value21, value22, value23;
-    private float value30, value31, value32, value33;
+    private final float value00, value01, value02, value03;
+    private final float value10, value11, value12, value13;
+    private final float value20, value21, value22, value23;
+    private final float value30, value31, value32, value33;
 
     public Matrix4(float value00, float value01, float value02, float value03,
                    float value10, float value11, float value12, float value13,

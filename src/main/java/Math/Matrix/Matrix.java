@@ -1,6 +1,6 @@
 package Math.Matrix;
 
-public class Matrix{
+public abstract class Matrix{
     //сложение
     public static float[][] add(float[][] firstObject, float[][] secondObject) {
         int row = firstObject.length;
@@ -17,12 +17,12 @@ public class Matrix{
 
     //разность
     public static float[][] subtract(float[][] firstObject, float[][] secondObject) {
-        int row = firstObject.length;
-        int col = firstObject[0].length;
-        float[][] subtract = new float[row][col];
+        int rows = firstObject.length;
+        int cols = firstObject[0].length;
+        float[][] subtract = new float[rows][cols];
 
-        for(int i = 0; i < row; i++){
-            for(int j = 0; j < col; j++){
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
                 subtract[i][j] = firstObject[i][j] - secondObject[i][j];
             }
         }
@@ -30,16 +30,40 @@ public class Matrix{
     }
 
     //умножение на скаляр
-    public static float[][] multiByScalar(float[][] object, float scalar) {
-        int row = object.length;
-        int col = object[0].length;
-        float[][] multiByScalar = new float[row][col];
+    public static float[][] multiByScalar(float[][] matrix, float scalar) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        float[][] multiByScalar = new float[rows][cols];
 
-        for(int i = 0; i < row; i++){
-            for(int j = 0; j < col; j++){
-                multiByScalar[i][j] = object[i][j] * scalar;
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                multiByScalar[i][j] = matrix[i][j] * scalar;
             }
         }
+        return multiByScalar;
+    }
+
+    //умножение на вектор
+    public static float[] multiByVector(float[][] matrix, float[] vector) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        float[] multiByScalar = new float[rows];
+
+        if (cols != vector.length) {
+            throw new IllegalArgumentException(
+                    String.format("Несовместимые размеры: матрица %dx%d, вектор длины %d",
+                            rows, cols, vector.length)
+            );
+        }
+
+        for (int i = 0; i < rows; i++) {
+            float sum = 0;
+            for (int j = 0; j < cols; j++) {
+                sum += matrix[i][j] * vector[j];
+            }
+            multiByScalar[i] = sum;
+        }
+
         return multiByScalar;
     }
 

@@ -21,7 +21,7 @@ class Vector4Test {
         Vector4 vector1 = new Vector4(2.5F,5.6F, 2, 0.5F);
         Vector4 vector2 = new Vector4(2.5F,5.6F, 2, 0.5F);
         float[] vector = {5, 11.2F, 4, 1};
-        Vector4 check = Vector4.add(vector1,vector2);
+        Vector4 check = vector1.add(vector2);
 
         assertEquals(check.getVector()[0], vector[0],10e-8);
         assertEquals(check.getVector()[1], vector[1], 10e-8);
@@ -33,7 +33,7 @@ class Vector4Test {
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> Vector4.add(vector3,vector2)
+                () -> vector2.add(vector3)
         );
 
         assertEquals("аргумент не может быть null", exception.getMessage());
@@ -45,7 +45,7 @@ class Vector4Test {
         Vector4 vector1 = new Vector4(5,11.2F, 4, 1);
         Vector4 vector2 = new Vector4(2.5F,5.6F, 2,1);
         float[] vector = {2.5F, 5.6F, 2, 0};
-        Vector4 check = Vector4.subtract(vector1,vector2);
+        Vector4 check = vector1.subtract(vector2);
 
         assertEquals(check.getVector()[0], vector[0],10e-8);
         assertEquals(check.getVector()[1], vector[1],10e-8);
@@ -57,7 +57,7 @@ class Vector4Test {
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> Vector4.subtract(vector3,vector2)
+                () -> vector2.subtract(vector3)
         );
 
         assertEquals("аргумент не может быть null", exception.getMessage());
@@ -67,38 +67,27 @@ class Vector4Test {
     void multiByScalar() {
         Vector4 vector1 = new Vector4(2,3, 4, 1);
         float[] vector = {4, 6, 8, 2};
-        Vector4 check = Vector4.multiByScalar(vector1,2);
+        Vector4 check = vector1.multiByScalar(2);
 
         assertEquals(check.getVector()[0], vector[0], 10e-8);
         assertEquals(check.getVector()[1], vector[1], 10e-8);
         assertEquals(check.getVector()[2], vector[2], 10e-8);
         assertEquals(check.getVector()[3], vector[3], 10e-8);
 
-        Vector4 check1 = Vector4.multiByScalar(vector1,0);
+        Vector4 check1 = vector1.multiByScalar(0);
         float[] vector2 = {0, 0, 0, 0};
 
         assertEquals(check1.getVector()[0], vector2[0], 10e-8);
         assertEquals(check1.getVector()[1], vector2[1], 10e-8);
         assertEquals(check1.getVector()[2], vector2[2], 10e-8);
         assertEquals(check1.getVector()[3], vector2[3], 10e-8);
-
-        //проверка исключения
-        Vector4 vector3 = null;
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> Vector4.multiByScalar(vector3,2)
-        );
-
-        assertEquals("аргумент не может быть null", exception.getMessage());
-
     }
 
     @Test
     void divByScalar() {
         Vector4 vector1 = new Vector4(4.2F,8.8F, 12.6F, 16.4F);
         float[] vector = {2.1F, 4.4F, 6.3F, 8.2F};
-        Vector4 check = Vector4.divByScalar(vector1,2);
+        Vector4 check = vector1.divByScalar(2);
 
         assertEquals(check.getVector()[0], vector[0], 10e-8);
         assertEquals(check.getVector()[1], vector[1], 10e-8);
@@ -106,18 +95,9 @@ class Vector4Test {
         assertEquals(check.getVector()[3], vector[3], 10e-8);
 
         //проверка исключений
-        Vector4 vector3 = null;
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> Vector4.divByScalar(vector3,2)
-        );
-
-        assertEquals("аргумент не может быть null", exception.getMessage());
-
         ArithmeticException exception1 = assertThrows(
                 ArithmeticException.class,
-                () -> Vector4.divByScalar(vector1,0)
+                () -> vector1.divByScalar(0)
         );
 
         assertEquals("Деление на ноль невозможно", exception1.getMessage());
@@ -128,17 +108,7 @@ class Vector4Test {
         Vector4 vector1 = new Vector4(2.5F,3.8F, 2.4F, 6);
         float length = 7.90253F;
 
-        assertEquals(Vector4.vectorLength(vector1), length, 0.00001);
-
-        //проверка исключения
-        Vector4 vector3 = null;
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> Vector4.vectorLength(vector3)
-        );
-
-        assertEquals("аргумент не может быть null", exception.getMessage());
+        assertEquals(vector1.vectorLength(), length, 0.00001);
     }
 
     @Test
@@ -146,22 +116,12 @@ class Vector4Test {
         Vector4 vector1 = new Vector4(3,4, 1, 4.5F);
         float[] normalization = {0.44112f, 0.58817f, 0.14704F, 0.66169F};
 
-        Vector4 check = Vector4.normalization(vector1);
+        Vector4 check = vector1.normalization();
 
         assertEquals(check.getVector()[0], normalization[0], 0.00001);
         assertEquals(check.getVector()[1], normalization[1], 0.00001);
         assertEquals(check.getVector()[2], normalization[2], 0.00001);
         assertEquals(check.getVector()[3], normalization[3], 0.00001);
-
-        //проверка исключения
-        Vector4 vector3 = null;
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> Vector4.normalization(vector3)
-        );
-
-        assertEquals("аргумент не может быть null", exception.getMessage());
     }
 
     @Test
@@ -171,7 +131,7 @@ class Vector4Test {
 
         float vector = 28;
 
-        float check = Vector4.scalarMultiplication(vector1,vector2);
+        float check = vector1.scalarMultiplication(vector2);
 
         assertEquals(check, vector, 10e-8);
 
@@ -180,7 +140,7 @@ class Vector4Test {
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> Vector4.scalarMultiplication(vector3,vector1)
+                () -> vector2.scalarMultiplication(vector3)
         );
 
         assertEquals("аргумент не может быть null", exception.getMessage());
