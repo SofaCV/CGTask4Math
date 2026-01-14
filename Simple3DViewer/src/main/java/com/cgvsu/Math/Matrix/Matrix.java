@@ -1,6 +1,6 @@
-package Math.Matrix;
+package com.cgvsu.Math.Matrix;
 
-import Math.Vector.Vector;
+import com.cgvsu.Math.Vector.Vector;
 
 public abstract class Matrix <T extends Matrix<T>>{
     private final float[][] matrix;

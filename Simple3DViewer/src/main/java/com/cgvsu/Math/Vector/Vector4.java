@@ -1,9 +1,23 @@
-package Math.Vector;
+package com.cgvsu.Math.Vector;
 
 public class Vector4 extends Vector<Vector4>{
 
     public Vector4(float x, float y, float z, float w){
         super(new float[]{x, y, z, w});
+    }
+
+    public float getX() {
+        return super.getVector()[0];
+    }
+
+    public float getY(){
+        return super.getVector()[1];
+    };
+    public float getZ() {
+        return super.getVector()[2];
+    }
+    public float getW() {
+        return super.getVector()[3];
     }
 
     /**

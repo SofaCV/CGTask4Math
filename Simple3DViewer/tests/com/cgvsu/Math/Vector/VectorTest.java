@@ -1,4 +1,4 @@
-package Math.Vector;
+package com.cgvsu.Math.Vector;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,4 +1,4 @@
-package Math.Vector;
+package com.cgvsu.Math.Vector;
 
 public abstract class Vector<T extends Vector<T>>{
     private final float[] vector;

@@ -1,7 +1,7 @@
-package Math.Matrix;
+package com.cgvsu.Math.Matrix;
 
-import Math.Vector.Vector;
-import Math.Vector.Vector4;
+import com.cgvsu.Math.Vector.Vector;
+import com.cgvsu.Math.Vector.Vector4;
 
 public class Matrix4 extends Matrix<Matrix4>{
 

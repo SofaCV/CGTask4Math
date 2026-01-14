@@ -1,8 +1,7 @@
-package Math.Matrix;
+package com.cgvsu.Math.Matrix;
 
-import Math.Vector.Vector2;
-import Math.Vector.Vector3;
-import Math.Vector.Vector4;
+import com.cgvsu.Math.Vector.Vector2;
+import com.cgvsu.Math.Vector.Vector4;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,10 +1,21 @@
-package Math.Vector;
+package com.cgvsu.Math.Vector;
 
 public class Vector3 extends Vector<Vector3>{
 
     public Vector3(float x, float y, float z){
         super(new float[]{x, y, z});
     }
+    public float getX() {
+        return super.getVector()[0];
+    }
+
+    public float getY(){
+        return super.getVector()[1];
+    };
+    public float getZ() {
+        return super.getVector()[2];
+    }
+
 
     /**
      * @param result

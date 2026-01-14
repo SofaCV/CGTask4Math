@@ -1,7 +1,7 @@
 package com.cgvsu.objreader;
 
-import com.cgvsu.math.Vector2f;
-import com.cgvsu.math.Vector3f;
+import com.cgvsu.Math.Vector.Vector2;
+import com.cgvsu.Math.Vector.Vector3;
 import com.cgvsu.model.Model;
 import com.cgvsu.model.Polygon;
 
@@ -55,9 +55,9 @@ public class ObjReader {
 	}
 
 	// Всем методам кроме основного я поставил модификатор доступа protected, чтобы обращаться к ним в тестах
-	protected static Vector3f parseVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
+	protected static Vector3 parseVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
 		try {
-			return new Vector3f(
+			return new Vector3(
 					Float.parseFloat(wordsInLineWithoutToken.get(0)),
 					Float.parseFloat(wordsInLineWithoutToken.get(1)),
 					Float.parseFloat(wordsInLineWithoutToken.get(2)));
@@ -70,9 +70,9 @@ public class ObjReader {
 		}
 	}
 
-	protected static Vector2f parseTextureVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
+	protected static Vector2 parseTextureVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
 		try {
-			return new Vector2f(
+			return new Vector2(
 					Float.parseFloat(wordsInLineWithoutToken.get(0)),
 					Float.parseFloat(wordsInLineWithoutToken.get(1)));
 
@@ -84,9 +84,9 @@ public class ObjReader {
 		}
 	}
 
-	protected static Vector3f parseNormal(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
+	protected static Vector3 parseNormal(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
 		try {
-			return new Vector3f(
+			return new Vector3(
 					Float.parseFloat(wordsInLineWithoutToken.get(0)),
 					Float.parseFloat(wordsInLineWithoutToken.get(1)),
 					Float.parseFloat(wordsInLineWithoutToken.get(2)));

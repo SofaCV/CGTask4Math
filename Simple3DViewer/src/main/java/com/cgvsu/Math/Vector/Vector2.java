@@ -1,10 +1,18 @@
-package Math.Vector;
+package com.cgvsu.Math.Vector;
 
 public class Vector2 extends Vector<Vector2>{
 
     public Vector2(float x, float y){
         super(new float[]{x, y});
     }
+
+    public float getX() {
+        return super.getVector()[0];
+    }
+
+    public float getY(){
+        return super.getVector()[1];
+    };
 
     /**
      * @param result
