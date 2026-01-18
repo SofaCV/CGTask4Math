@@ -44,7 +44,7 @@ public class Camera {
     }
 
     public void moveTarget(final Vector3 translation) {
-        this.target.add(target);
+        this.target.add(translation);
     }
 
     Matrix4 getViewMatrix() {
@@ -53,6 +53,19 @@ public class Camera {
 
     Matrix4 getProjectionMatrix() {
         return GraphicConveyor.perspective(fov, aspectRatio, nearPlane, farPlane);
+    }
+
+    //добавила методы для возвращения осей системы координат камеры
+    public Vector3 getZ (){
+        return (target.subtract(position)).normalization();
+    }
+    public Vector3 getX() {
+        Vector3 up = new Vector3(0, 1, 0);
+        return (up.vectorMult(getZ())).normalization();
+    }
+
+    public Vector3 getY() {
+        return getZ().vectorMult(getX());
     }
 
     private Vector3 position;

@@ -9,15 +9,12 @@ import java.awt.geom.Point2D;
 
 public class GraphicConveyor {
 
+    // T * R * S
     public static Matrix4 rotateScaleTranslate(Vector3 s, Vector3 angle, Vector3 t) {
-        Matrix4 result = scaleMatrix(s);
-        result = rotationMatrix(angle).mult(result);
-        result = translationMatrix(t).mult(result);
-        return result;
+        return translationMatrix(t).mult(rotationMatrix(angle).mult(scaleMatrix(s)));
     }
 
     public static Matrix4 lookAt(Vector3 eye, Vector3 target) {
-
         return lookAt(eye, target, new Vector3(0F, 1.0F, 0F));
     }
 
@@ -53,7 +50,7 @@ public class GraphicConveyor {
 
         return new Matrix4(
                 1/tanFov, 0,0,0,
-                0,1/(ar * tanFov), 0,0,
+                0,-1/(ar * tanFov), 0,0,
                 0,0, (f + n)/(f - n), (2 * f * n)/(n - f),
                 0,0,1,0
         );
@@ -111,7 +108,10 @@ public class GraphicConveyor {
         );
     }
 
-//    public static Point2D vertexToPoint(final Vector3 vertex, final int width, final int height) {
-//        return new Point2D(vertex.getX() * width + width / 2.0F, -vertex.getY() * height + height / 2.0F);
-//    }
+    public static Point2D vertexToPoint(final Vector3 vertex, final int width, final int height) {
+        float screenX = (vertex.getX() + 1) * (width * 0.5f);
+        float screenY = (-vertex.getY() + 1) * (height * 0.5f);
+
+        return new Point2D.Float(screenX, screenY);
+    }
 }

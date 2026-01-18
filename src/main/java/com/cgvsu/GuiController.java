@@ -34,11 +34,16 @@ public class GuiController {
     private Model mesh = null;
 
     private Camera camera = new Camera(
-            new Vector3(0, 00, 100),
+            new Vector3(0, 0, 100),
             new Vector3(0, 0, 0),
             1.0F, 1, 0.01F, 100);
 
     private Timeline timeline;
+
+    //параметры для аффинных преобразований
+    private Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);;
+    private Vector3 rotation = new Vector3(0,0,0);
+    private Vector3 translation = new Vector3(0,0,0);
 
     @FXML
     private void initialize() {
@@ -56,12 +61,36 @@ public class GuiController {
             camera.setAspectRatio((float) (width / height));
 
             if (mesh != null) {
-                RenderEngine.render(canvas.getGraphicsContext2D(), camera, mesh, (int) width, (int) height);
+                RenderEngine.render(
+                        canvas.getGraphicsContext2D(),
+                        camera,
+                        mesh,
+                        (int) width,
+                        (int) height,
+                        scale,
+                        rotation,
+                        translation
+                );
             }
         });
 
         timeline.getKeyFrames().add(frame);
         timeline.play();
+        setupMouseHandlers();
+    }
+
+    private void setupMouseHandlers() {
+        // зум
+        canvas.setOnScroll(event -> {
+            float zoomSpeed = 0.1f;
+            double deltaY = event.getDeltaY();
+            float zoomDelta = (float) (deltaY * zoomSpeed);
+            Vector3 direction = camera.getZ().normalization();
+            Vector3 newPosition = camera.getPosition().add(direction.multiByScalar(zoomDelta));
+            if (newPosition.subtract(camera.getTarget()).vectorLength() > 0.5f) {
+                camera.setPosition(newPosition);
+            }
+        });
     }
 
     @FXML
