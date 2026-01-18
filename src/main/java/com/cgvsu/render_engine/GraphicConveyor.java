@@ -11,15 +11,22 @@ public class GraphicConveyor {
 
     // T * R * S
     public static Matrix4 rotateScaleTranslate(Vector3 s, Vector3 angle, Vector3 t) {
+        checkArguments(s);
+        checkArguments(angle);
+        checkArguments(t);
         return translationMatrix(t).mult(rotationMatrix(angle).mult(scaleMatrix(s)));
     }
 
     public static Matrix4 lookAt(Vector3 eye, Vector3 target) {
+        checkArguments(eye);
+        checkArguments(target);
+
         return lookAt(eye, target, new Vector3(0F, 1.0F, 0F));
     }
 
     //мировая система координат -> система координат камеры
     public static Matrix4 lookAt(Vector3 eye, Vector3 target, Vector3 up) {
+        checkArguments(up);
 
         //получаем оси системы координат камеры и сразу их нормализуем
         Vector3 resultZ = (target.subtract(eye)).normalization();
@@ -58,7 +65,10 @@ public class GraphicConveyor {
 
     //аффинные преобразования
     //матрица масштабирования
-    private static Matrix4 scaleMatrix(Vector3 s){
+    protected static Matrix4 scaleMatrix(Vector3 s){
+        checkScale(s.getX());
+        checkScale(s.getY());
+        checkScale(s.getZ());
         return new Matrix4(
                 s.getX(), 0, 0,0,
                 0, s.getY(), 0,0,
@@ -68,7 +78,7 @@ public class GraphicConveyor {
     }
 
     //матрица поворота сразу вокруг всех осей
-    private static Matrix4 rotationMatrix(Vector3 angle){
+    protected static Matrix4 rotationMatrix(Vector3 angle){
         float cosX = (float) Math.cos(angle.getX());
         float sinX = (float) Math.sin(angle.getX());
         float cosY = (float) Math.cos(angle.getY());
@@ -86,7 +96,7 @@ public class GraphicConveyor {
     }
 
     //матрица переноса
-    private static Matrix4 translationMatrix(Vector3 t){
+    protected static Matrix4 translationMatrix(Vector3 t){
         return new Matrix4(
                 1,0,0,t.getX(),
                 0,1,0,t.getY(),
@@ -113,5 +123,17 @@ public class GraphicConveyor {
         float screenY = (height - 1) * 0.5f * vertex.getY() + (height - 1) * 0.5f;
 
         return new Point2D.Float(screenX, screenY);
+    }
+
+    //исключения на проверку входных данных
+    private static void checkArguments(Vector3 argument){
+        if (argument == null) {
+            throw new IllegalArgumentException("аргумент не может быть null");
+        }
+    }
+    private static void checkScale(float argument){
+        if (argument == 0) {
+            throw new IllegalArgumentException("коэффициент масштабирования не может быть 0");
+        }
     }
 }
