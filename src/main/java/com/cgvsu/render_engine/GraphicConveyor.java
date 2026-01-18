@@ -46,11 +46,11 @@ public class GraphicConveyor {
             final float ar,
             final float n,
             final float f) {
-        float tanFov = (float) Math.tan(fov);
+        float tanFov = (float) Math.tan(fov * 0.5);
 
         return new Matrix4(
                 1/tanFov, 0,0,0,
-                0,-1/(ar * tanFov), 0,0,
+                0,1/(ar * tanFov), 0,0,
                 0,0, (f + n)/(f - n), (2 * f * n)/(n - f),
                 0,0,1,0
         );
@@ -109,8 +109,8 @@ public class GraphicConveyor {
     }
 
     public static Point2D vertexToPoint(final Vector3 vertex, final int width, final int height) {
-        float screenX = (vertex.getX() + 1) * (width * 0.5f);
-        float screenY = (-vertex.getY() + 1) * (height * 0.5f);
+        float screenX = (width - 1) * 0.5f * vertex.getX() + (width - 1) * 0.5f;
+        float screenY = (height - 1) * 0.5f * vertex.getY() + (height - 1) * 0.5f;
 
         return new Point2D.Float(screenX, screenY);
     }
